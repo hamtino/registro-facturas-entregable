@@ -7,6 +7,9 @@
 * Instalar dependencias necesarias Laravel.
 `composer install`
 
+* Migrar la base de datos necesaria.
+`php artisna migrate`
+
 * iniciar laravel. 
 `php artisan serve`
 
