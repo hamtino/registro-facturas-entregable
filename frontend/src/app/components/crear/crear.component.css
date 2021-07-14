@@ -1,0 +1,7 @@
+.ng-autocomplete {
+    width:100%;
+    max-width: 100%;
+    display: table;
+    border-radius: 50%;
+    margin: 0 auto;
+}

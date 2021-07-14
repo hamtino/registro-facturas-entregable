@@ -1,0 +1,47 @@
+<div class="container">
+  
+  <div class="d-flex justify-content-between">
+    <h4>Editar persona</h4>
+    <a href="#" routerLink="/crear" class="btn btn-primaryt">Regresar</a>
+  </div>
+
+  <hr>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+
+      <div class="form-group row">
+          <div class="col-md-6 ">
+            <label for="title">Nombre:</label>
+            <input
+            [(ngModel)]="persona.nombre"
+              formControlName="nombre"
+              id="nombre"
+              type="text"
+              class="form-control">
+            <div *ngIf="f.nombre.touched && f.nombre.invalid" class="alert alert-danger">
+              <div *ngIf="f.nombre.errors.required">*Nombre es requerido.</div>
+              <div *ngIf="f.nombre.errors.pattern">*El nombre solo debe contener.</div>
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <div class="col-md-6 ">
+            <label for="phone">NIT:</label>
+            <input
+              [(ngModel)]="persona.nit"
+              formControlName="nit"
+              id="nit"
+              type="text"
+              class="form-control">
+            <div *ngIf="f.nit.touched && f.nit.invalid" class="alert alert-danger">
+                <div *ngIf="f.nit.errors.required">*Phone is required.</div>
+                <div *ngIf="f.nit.errors.pattern">*The phone must only contain numbers.</div>
+            </div>
+          </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+  </form>
+</div>

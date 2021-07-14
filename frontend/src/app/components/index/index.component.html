@@ -1,0 +1,28 @@
+<section>
+
+  <div class="d-flex justify-content-between">
+    <h4>Lista de Facturas</h4>
+    <a routerLink="/facturar" class="btn btn-success">Crear Factura</a>
+  </div>
+
+  <br>
+  
+  <table class="table ">
+    <tr>
+      <th>ID</th>
+      <th>Emisor</th>
+      <th>Receptor</th>
+      <th>valor</th>
+      <th>iva</th>
+      <th>total</th>
+    </tr>
+    <tr *ngFor="let fact of factura">
+      <td>{{ fact.id }}</td>
+      <td>{{ fact.emisor }}</td>
+      <td>{{ fact.receptor }}</td>
+      <td>$ {{ fact.valor }}</td>
+      <td>$ {{ fact.iva }}</td>
+      <td>$ {{ fact.total }}</td>
+    </tr>
+  </table>
+</section>

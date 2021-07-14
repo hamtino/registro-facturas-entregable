@@ -1,0 +1,32 @@
+<section>
+
+  <div class="d-flex justify-content-between">
+    <h4>Lista de personas</h4>
+    <a href="#" routerLink="/facturar" class="btn btn-primaryt">Regresar</a> 
+  </div>
+
+  <br>
+  <button type="button" routerLink="/crearpersona" class="btn btn-primary">Crear Persona</button>
+  <br>
+  <table class="table ">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Nit</th>
+      <th width="220px">Accion</th>
+    </tr>
+    <tr *ngFor="let person of persons">
+      <td>{{ person.id }}</td>
+      <td>{{ person.nombre }}</td>
+      <td>{{ person.nit }}</td>
+      <td>
+        <a href="#" [routerLink]="['/editarpersona/', person.id  ]" class="btn btn-primary">Editar</a>
+        <button type="button" (click)="deletePerson(person.id)" class="btn btn-danger">borrar</button>
+      </td>
+    </tr>
+  </table>
+</section>
+
+
+
+

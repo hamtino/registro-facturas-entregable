@@ -1,0 +1,151 @@
+<div class="d-flex justify-content-between">
+  <h4>Registro de Factura</h4>
+  <a href="#" routerLink="/index" class="btn btn-primaryt">Regresar</a>
+</div>
+<button type="button" routerLink="/crear" class="btn btn-primary">Lista de Personas</button>
+<br>
+<div class="card">
+  <div class="card-body">
+    <form>
+      <div class="row">
+        <div class="col">
+          <label for="inputEmail4">Emisor</label>
+          <div class="ng-autocomplete">
+              <ng-autocomplete 
+                [data]="data"
+                [searchKeyword]="keyword"
+                (selected)='selectEvent($event)'
+                (inputChanged)='onChangeSearch($event)'
+                (inputFocused)='onFocused($event)'
+                [itemTemplate]="itemTemplate"
+                [notFoundTemplate]="notFoundTemplate">                                 
+              </ng-autocomplete>
+              
+              <ng-template #itemTemplate let-item>
+              <a [innerHTML]="item.nombre"></a>
+              </ng-template>
+              
+              <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+              </ng-template>
+          </div>
+        </div>
+        <div class="col">
+          <label for="inputEmail4">NIT</label>
+          <input type="text" class="form-control" placeholder="Last name" value="{{nitemisor}}" [disabled]="true">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <label for="inputEmail4">Receptor</label>
+          <div class="ng-autocomplete">
+              <ng-autocomplete 
+                [data]="data"
+                [searchKeyword]="keyword"
+                (selected)='selectEvent2($event)'
+                (inputChanged)='onChangeSearch($event)'
+                (inputFocused)='onFocused($event)'
+                [itemTemplate]="itemTemplate"
+                [notFoundTemplate]="notFoundTemplate">                                 
+              </ng-autocomplete>
+              
+              <ng-template #itemTemplate let-item>
+              <a [innerHTML]="item.nombre"></a>
+              </ng-template>
+              
+              <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+              </ng-template>
+          </div>
+        </div>
+        <div class="col">
+          <label for="inputEmail4">NIT</label>
+          <input type="text" class="form-control" placeholder="Last name" value="{{nitreceptor}}" [disabled]="true">
+        </div>
+      </div>
+
+      <br>
+      <div class="row">
+        <div class="col">
+          <label for="inputEmail4">Producto</label>
+          <div class="ng-autocomplete">
+              <ng-autocomplete 
+                [data]="data2"
+                [searchKeyword]="keyword2"
+                (selected)='selectEvent3($event)'
+                (inputChanged)='onChangeSearch($event)'
+                (inputFocused)='onFocused($event)'
+                [itemTemplate]="item2Template"
+                [notFoundTemplate]="notFoundTemplate">                                 
+              </ng-autocomplete>
+              
+              <ng-template #item2Template let-item2>
+              <a [innerHTML]="item2.descripcion"></a>
+              </ng-template>
+              
+              <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+              </ng-template>
+          </div>
+        </div>
+        <div class="col">
+          <label for="inputEmail4">Precio</label>
+          <input type="number" [(ngModel)]="precio" name="first" class="form-control">
+        </div>
+        <div class="col">
+          <label for="inputEmail4">Cantidad</label>
+          <input type="number" [(ngModel)]="cantidad" name="dos" class="form-control">
+        </div>
+        <div class="col">
+          <label for="inputEmail4">Añadir</label>
+          <button type="button" class="form-control btn btn-primary" (click)="detallesfact()">+</button>
+        </div>
+      </div>
+  </form>
+  <br>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+        <th style="width:40px;"></th>
+        <th>Producto</th>
+        <th style="width:200px;" class="text-right">Cantidad</th>
+        <th style="width:200px;" class="text-right">P.U</th>
+        <th style="width:200px;" class="text-right">Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let items of data4;let indice=index">
+        <td>
+            <button class="btn btn-danger btn-xs btn-block" (click)="eliminaelemento(indice)">X</button>
+        </td>
+        <th>{{ items.producto }}</th>
+        <th style="width:200px;" class="text-right">{{ items.cantidad }}</th>
+        <th style="width:200px;" class="text-right">$ {{ items.precio }}</th>
+        <th style="width:200px;" class="text-right">$ {{ items.total }}</th>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4" class="text-right"><b>Sub Total</b></td>
+        <td class="text-right">$ {{subtotal}}</td>
+    </tr>
+    <tr>
+      <td colspan="4" class="text-right"><b>IVA</b></td>
+      <td class="text-right">$ {{iva}}</td>
+  </tr>
+    <tr>
+        <td colspan="4" class="text-right"><b>Total</b></td>
+        <td class="text-right">$ {{total}}</td>
+    </tr>
+    </tfoot>
+</table>
+
+  
+  </div>
+
+</div>
+
+<br>
+<button type="button" (click)="guardar()" class="btn btn-primary">Guardar Factura</button>
